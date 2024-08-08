@@ -1,6 +1,48 @@
-<p>races works!</p>
-@for (race of races; track race.id) {
+@let count = races.length * 2;
+
+<h3>Races</h3>
+<ul>
+   @for (race of races; track race.id) {
+      <li [textContent]="$index + ': ' + race.name" [class.dark-green]="$last"></li>
+   } @empty {
+      <li>No races yet</li>
+   }
+</ul>
+
+<ul>
    <div>
-      <h2>{{ race.name }}</h2>
+      @switch (races.length) {
+         @case (0) {
+            <li>There are not any races at the moment</li>
+         }
+         @case (1) {
+            <li>We now have our first race</li>
+         }
+         @case (2) {
+            <li>Now there are 2 races.</li>
+         }
+         @default {
+            <li>More races to come, perhaps {{ count }} in a near future.</li>
+         }
+      }
+   </div>
+</ul>
+
+@for (user of users; track user.id) {
+   <div class="name">{{ user.forename }} {{ user.surname }}</div>
+   <div class="address">
+      @let address = user.address;
+      <span>{{ address.number }}&nbsp;</span>
+      <span>{{ address.street }}&nbsp;-&nbsp;</span>
+      <span>{{ address.zipcode }}&nbsp;</span>
+      <span>{{ address.city.toUpperCase() }}&nbsp;</span>
    </div>
 }
+
+<div>
+   @if (races.length; as raceCount) {
+      <p>There are now {{ raceCount }} races at the moment.</p>
+   }
+</div>
+
+<p><button type="button" (click)="refreshRaces({ id: 3, name: 'Ur' })">Refresh races'list</button></p>

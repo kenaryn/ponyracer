@@ -1,6 +1,31 @@
 <pr-menu></pr-menu>
 
-<main class="container" style="margin-top: 70px">
+<main class="container" style="margin-top: 70px" (keydown.alt.o)="sayHi()">
    <h1>{{ title }}</h1>
+   <p>{{ numberOfUsers }} users and our dear admin {{ fullName() }}</p>
+    <!-- <p [textContent]="numberOfUsers + ' utilisateurs and the admin ' + fullName()"></p> -->
+   <button type="button" class="btn btn-secondary" (click)="toggleHiddenBlock()">Spoiler</button>
+   <p [hidden]="isHidden" [style.color]="foreground">Hidden or not??</p>
+   <!-- Evaluation context of the template's expressions -->
+   <p>Welcome {{ user?.name }}!</p> <!--Optional chaining operator `?.` -->
+
+   <div (newRaceAvailable)="whenNewRace()"></div>
+
    <pr-races></pr-races>
+
+   <div (click)="whenButtonClicked($event)">
+      <button type="button">Click here!</button>
+   </div>
+
+   <textarea (keydown.alt.ArrowUp)="onUpPress()">Press alt + up arrow!</textarea>
+
+   <p><input type="text" placeholder="Enter some text" #myInput>&nbsp;
+   <button type="button" class="btn btn-secondary" (click)="myInput.focus()">Focus</button></p>
+   <!-- <button (click)="myInput.focus({ focusVisible: true })">Focus the input</button> -->
+
+   <pr-ponies></pr-ponies>
+
+   <pr-test></pr-test>
+
+   <pr-simple-directive></pr-simple-directive>
 </main>

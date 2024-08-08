@@ -1,0 +1,8 @@
+<h3>Ponies</h3>
+
+<button type="button" (click)="refreshPonies()">Refresh ponies</button>
+<ul>
+   @for (pony of ponies; track pony.id) {
+       <pr-pony [pony]="pony" (ponySelected)="betOnPony($event)" [style.color]="$even ? 'green' : 'darkorchid'"/>
+   }
+</ul>

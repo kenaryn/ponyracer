@@ -1,1 +1,4 @@
-<li (click)="selectPony()">{{ pony.name }}</li>
+<figure (click)="clicked()">
+    <img [src]="getPonyImageUrl()" [alt]="ponyModel.name" />
+    <figcaption>{{ ponyModel.name }}</figcaption> 
+</figure>
